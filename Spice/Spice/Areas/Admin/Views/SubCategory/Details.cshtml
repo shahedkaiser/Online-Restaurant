@@ -1,0 +1,53 @@
+﻿@model Spice.Models.ViewModels.SubCategoryAndCategoryViewModel
+@using Spice.Extensions
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+<br />
+<h2 class="text-info">Edit Sub Category</h2>
+<br />
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="border backgroundWhite row">
+
+    <div class="col-12">
+        <form method="post" asp-action="Details">
+            <input type="hidden" asp-for="SubCategory.CategoryId" />
+            <input type="hidden" asp-for="SubCategory.Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="SubCategory.Category.Name" class="col-form-label"></label>
+                </div>
+                <div class="col-5">
+                    <input asp-for="SubCategory.Category.Name" readonly class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="SubCategory.Name" class="col-form-label"></label>
+                </div>
+                <div class="col-5">
+                    <input asp-for="SubCategory.Name" readonly class="form-control" />
+                </div>
+                <span asp-validation-for="SubCategory.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-5 offset-3">
+                    <partial name="_DetailsAndBackToListPartial" model="Model.SubCategory.Id" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+    
+</div>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+}
+
+
